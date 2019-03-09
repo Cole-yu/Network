@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Content-Type</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#request{
+			background: linear-gradient(to right,#00b8ff,#b2b2cc);
+    		box-shadow: 0 0 8px 3px rgba(44,203,181,1);
+		}
+		#content{
+			width:300px;
+			height: 300px;
+			border: 1px solid #ddd;
+		}	
+	</style>
+</head>
+<body>
+	<div id="content"></div>
+	<hr>
+	<button id="request">复杂请求</button>
+	<script type="text/javascript">
+		// 非简单请求，分 OPTIONS 和 POST
+		document.getElementById("request").addEventListener("click",function(){
+			send();
+		},true);
+
+		function send(){
+			var xhr = new XMLHttpRequest();
+			xhr.open("post","http://localhost:3000");
+			xhr.setRequestHeader("Content-Type","application/json");			
+			xhr.onreadystatechange=function () {
+				if(xhr.readyState==4&&xhr.status==200){
+					document.getElementById("content").innerHTML=xhr.responseText;				
+				}
+			}
+			var data={
+				userName:"yfx",	
+				password:"123"
+			}
+			data=JSON.stringify(data);			
+			xhr.send(data);
+		}		
+
+	</script>
+</body>
+</html>
