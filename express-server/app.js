@@ -1,6 +1,16 @@
 var express = require('express');
 var app = new express();
 var Mock = require('mockjs');
+//form表单需要的中间件。
+var mutipart= require('connect-multiparty');
+
+var mutipartMiddeware = mutipart();
+
+app.use(
+    mutipart({
+        uploadDir:'./uploadFiles'
+    })
+);
 
 function createMockDate(){
 	// 将时间戳格式改为 'yyyy-MM-dd' 格式
@@ -58,6 +68,19 @@ app.post('/appList/:appType', (req,res) => {
 
 	res.set('Access-Control-Allow-Origin', "*");	
 	res.send(filterData);
+});
+
+
+//这里就是接受form表单请求的接口路径，请求方式为post。
+app.post('/upload', mutipartMiddeware, function (req, res) {    
+    console.log(JSON.stringify(req.files, null ,4));
+  
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    
+    //给浏览器返回一个成功提示。
+    res.send('upload success!');
 });
 
 app.listen(3000);
