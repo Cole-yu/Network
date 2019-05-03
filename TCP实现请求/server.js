@@ -1,12 +1,23 @@
 // var net = require('net');
 // var server = net.createServer(function(socket){
-// 	socket.on('data', function(data){
+//  socket.on('data', function(data){
 // 		socket.write("aaaaa");
 // 	});
 // 	socket.on('end', function(){
 // 		console.log("连接断开");
 // 	});
 // 	socket.write("欢迎阅读Node.js");
+// });
+//
+// server.on('connection', function(socket){
+//     socket.write('连接成功');
+//
+//     var result = '';
+//     // 监听客户端发送的消息
+//     socket.on('data', function(data){
+//         result = result + data;
+//         socket.write('接收到数据');
+//     }
 // });
 // server.listen(3000, function(){
 // 	console.log('server bound');
