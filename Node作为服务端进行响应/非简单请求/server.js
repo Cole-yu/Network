@@ -1,17 +1,13 @@
 var http = require("http");
 
 http.createServer(function (req, res) {
-	
 	var content = "", txt;
-	
+
 	req.on("data", function(data){
-
 		content += data;			
-
 	});
 
-	req.on("end", function(){	
-		
+	req.on("end", function(){			
 		res.writeHead(200, {			
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Headers": "Content-Type",
@@ -27,12 +23,8 @@ http.createServer(function (req, res) {
 			
 			res.write("参数：" + txt.userName);				
 		}
-
-		res.end();
-					
+		res.end();					
 	});	
 
 }).listen(3000);
-
 console.log("listen in localhost:3000");
-

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>客户端发起请求</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="客户端">
+</head>
+<body>
+	<h1>客户端页面</h1>
+	<button onclick='send();'>发起请求</button>
+	<script type="text/javascript">
+		function send(){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://127.0.0.1:3300/proxy', true);
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					console.log(xhr.responseText);
+					document.write(xhr.responseText);
+				}
+			}
+			xhr.send();	
+		}		
+	</script>
+</body>
+</html>
